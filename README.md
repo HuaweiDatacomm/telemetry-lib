@@ -1,7 +1,7 @@
-# **telemetry-sdk**
+# **telemetry-lib**
 
 ## **Overview**
-telemetry-sdk from huawei devices
+Some lib interfaces about telemetry operations for Python Developers
 
 ## **Installation**
 ### **Prerequisites**
