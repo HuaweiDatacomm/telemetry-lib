@@ -1,27 +1,34 @@
-# **telemetry-lib**
+# **telemetry-sdk**
 
 ## **Overview**
-Some lib interfaces about telemetry operations for Python Developers
+Some lib interfaces about telemetry operations for Python Developers.
 
 ## **Installation**
 ### **Prerequisites**
 
 - Python : 3.10
-   
-### **needed modules**
-- fastapi
-- uvicorn
-- pydantic
-- grpcio
-- protobuf 3.20.0
 
-## **start up**
+## **Hot to use**
 
-1. run the main.py in root dir:
+1. import related classes:
    ```
-   python3 main.py 
+   from subscribe import Subscribe
+   from message import Message
    ```
-2. visit docs below by browser:   
+2. get instance and call corresponding method:   
    ```
-   http://127.0.0.1:8000/docs
+   paths = [
+        {
+            "path": "huawei-debug:debug/cpu-infos/cpu-info",
+            "depth": 1
+        }
+   ]
+   subs = Subscribe(username='XXX', password='XXX', address="XXX", paths=paths)
+   subs.dailin()
+   ```
+
+3. decode gpb-encoding message:   
+   ```
+   msg = Message(res.message)
+   info, list = msg.decode()
    ```
