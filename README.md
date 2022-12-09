@@ -1,27 +1,43 @@
 # **telemetry-lib**
 
 ## **Overview**
-Some lib interfaces about telemetry operations for Python Developers
+Some lib interfaces about huawei telemetry operations for Python Developers.
 
 ## **Installation**
 ### **Prerequisites**
-
-- Python : 3.10
-   
-### **needed modules**
-- fastapi
-- uvicorn
-- pydantic
-- grpcio
-- protobuf 3.20.0
-
-## **start up**
-
-1. run the main.py in root dir:
+1. Python version needs greater than **3.7** and the latest module **grpc**.
+- Python: 3.7+
+- gprc: `pip install grpcio`
+2. copy some files to your working dependency folder, sometimes **lib**.
+- subscribe.py
+- message.py
+- all files in the folder `proto_py`
+3. import related classes in your header of main file:
    ```
-   python3 main.py 
+   from subscribe import Subscribe
+   from message import Message
    ```
-2. visit docs below by browser:   
+## **Hot to use**
+
+1. import related classes:
    ```
-   http://127.0.0.1:8000/docs
+   from subscribe import Subscribe
+   from message import Message
+   ```
+2. get instance and call corresponding method:   
+   ```
+   paths = [
+        {
+            "path": "huawei-debug:debug/cpu-infos/cpu-info",
+            "depth": 1
+        }
+   ]
+   subs = Subscribe(username='XXX', password='XXX', address="XXX", paths=paths)
+   subs.dailin()
+   ```
+
+3. decode gpb-encoding message:   
+   ```
+   msg = Message(res.message)
+   info, list = msg.decode()
    ```
