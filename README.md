@@ -3,24 +3,24 @@
 ## **Overview**
 Some lib interfaces about huawei telemetry operations for Python Developers.
 
-## **Installation**
-### **Prerequisites**
-1. Python version needs greater than **3.7** and the latest module **grpc**.
+## **Prerequisites**
 - Python: 3.7+
-- gprc: `pip install grpcio`
-2. copy some files to your working dependency folder, sometimes **lib**.
-- `subscribe.py`
-- `message.py`
-- all files in the folder `proto_py`
+- Module: grpc ( by `pip install grpcio`)
 
 
 ## **How to use**
-### 一、Subscribe dailin (动态订阅)
-1. import related classes:
+### Before use
+Copy some files to your dependency package folder, sometimes **lib**.
+- `subscribe.py` for dynamic subscribe
+- `message.py` for decode message
+- all files in the folder `proto_py`
+
+### I. Dynamic Subscribe
+1. import related class in your main file:
    ```
    from subscribe import Subscribe
    ```
-2. get instance and call corresponding method:   
+2. Initialize the `Subscribe` class and call the `dailin` method:   
    Examples: 
    ```
    paths = [
@@ -34,32 +34,34 @@ Some lib interfaces about huawei telemetry operations for Python Developers.
    ```
    parameters:
 
-   | name     | type   | required(必填) | default(默认值) | description(描述)  |
-   |----------|--------|--------------|--------------|:----------|
-   | username | string | yes          | None         | 用户名                           |
-   | password | string | yes          | None         | 密码                            |
-   | address  | string | yes          | None         | 订阅设备地址                        |
-   | paths  | list   | yes          | None         | 一个列表，元素是包含path和depth的字典，见以上示例 |
-   | sample_interval  | int    | no      | 1000     | 采用时间间隔，单位：毫秒 |
-   | request_id  | int    | no           | 3            | 订阅ID                          |
+   | name            | type   | required | default | description  |
+   |-------------|----------|--------------|--------------|----------|
+   | username        | string | yes      | None     | username                           |
+   | password        | string | yes      | None    | password                           |
+   | address         | string | yes      | None   | ip:port of device                |
+   | paths    | list   | yes      | None | The element is a dictionary that contains `path` and `depth`. |
+   | sample_interval | int    | no       | 1000     | Sample interval, in milliseconds. |
+   | request_id      | int    | no       | 3      | request_id                          |
    
-   returns:  
-   an object(instanceof SubsReply) which contains some attributes below.
+   return:  
+   an object(instanceof class `SubsReply`) which contains some attributes below.
    
-   | name | desc      | example |
-   | ---  |-----------| ---------- |
-   | subscription_id | 订阅ID      | 33306  |
-   | request_id | 请求ID      | 3      |
-   | message | 报文实体，bytes类型 |   /   |
+   | name            | description                      | example     |
+   |----------------------------------|-------------| ---------- |
+   | subscription_id | subscription_id                  | 33306       |
+   | request_id      | request_id                       | 3           |
+   | message         | message entities，type of bytes | /           |
 
-### 二、Decode Message(解析信息实体Message)
-1. import related classes:
+
+
+### II. Decode Message
+1. Import related class:
    ```
    from message import Message
    ```
-2. init Message and call decode method:   
+2. Initialize Message and call `decode` method:   
    Examples: 
-   ```
+   ```python
    msg = Message(res.message)
    info, list = msg.decode()
    
@@ -101,16 +103,16 @@ Some lib interfaces about huawei telemetry operations for Python Developers.
    ```
    parameters:
 
-   | name     | type   | required(必填) | default(默认值) | description(描述)   |
-   |----------|--------|--------------|--------------|:---------------------|
-   | message | bytes  | yes          | None         | 报文实体Message          |
+   | name     | type   | required | default | description      |
+   |----------|--------|--------------|------------------|:---------------------|
+   | message | bytes  | yes          | None         | message entities |
    
-   returns:  
-   an tuple (info, list) below.
+   return:  
+   a tuple (info, list) below.
    
-   | name | desc             | example               |
-   | ---  |------------------|-----------------------|
-   | info | Telemetry信息的基本信息 | `Telemetry`           |
-   | list | 订阅具体数据           | some special info |
+   | name | desc                                 | example     |
+   |--------------------------------------|-------------|-----------------------|
+   | info | basic infomation of Telemetry | `Telemetry` |
+   | list | some special info                               | /           |
 
    
