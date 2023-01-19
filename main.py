@@ -23,11 +23,9 @@ if __name__ == "__main__":
 
     utility_type = args.utility_type
     if utility_type == 'subscribe':
-        subs = Subscribe(username='dublin123', password='Dublin@123', address="10.137.104.30:57401", paths=paths)
         res = subs.dailin()
         print(res)
     else:
-        subs = Subscribe(username='dublin123', password='Dublin@123', address="10.137.104.30:57401", paths=paths)
         res = subs.dailin()
         msg = Message(res.message)
         info, list = msg.decode()
