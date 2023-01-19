@@ -7,6 +7,13 @@ Some lib interfaces about huawei telemetry operations for Python Developers.
 - Python: 3.7+
 - Module: grpc ( by `pip install grpcio`)
 
+## **Showcase**
+Run the `main.py` script, like
+```
+python main.py -t subscribe/decode
+```
+`-t` option stands for ultility type, two main values, subscribe and decode.   
+The former is by default.
 
 ## **How to use**
 ### Before use
