@@ -1,0 +1,13 @@
+{
+    "request_id": 3,
+    "encoding": 0,
+    "ip": "10.137.104.30",
+    "port": "57401",
+    "username": "dublin123",
+    "password": "Dublin@123",
+    "paths": [
+        "huawei-debug:debug/cpu-infos/cpu-info"
+
+    ],
+    "sample_interval": 10000
+}
